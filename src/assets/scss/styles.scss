@@ -1,0 +1,54 @@
+@import '@/assets/scss/variables.scss';
+
+// Repositories list
+.reposList {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    h1 {
+      margin-right: 15px;
+    }
+  }
+
+  .refresh {
+    cursor: pointer;
+    color: $second-color-fade;
+    transition: all .5s ease;
+
+    &:hover {
+      color: $second-color;
+    }
+  }
+}
+
+// Buttons
+.add, .delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.add {
+  background-color: $second-color-fade;
+
+  &:hover {
+    background-color: $second-color;
+  }
+}
+
+.delete {
+  background-color: #db5858be;
+
+  &:hover {
+    background-color: #ee4242;
+  }
+}
