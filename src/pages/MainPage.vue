@@ -22,11 +22,15 @@ export default {
 <style lang="scss">
   .main {
     display: grid;
-    gap: 30px;
-    grid-template-columns: 1fr 1fr;
-    
-    .works {
-      grid-column: 2;
-    }
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-gap: 32px;
+    grid-auto-flow: dense;
   }  
+
+  @media (max-width: 459px) {
+    .main {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 </style>

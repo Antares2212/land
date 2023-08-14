@@ -79,4 +79,10 @@ export default {
       color: #58DBC7;
     }
   }
+
+  @media (max-width: 459px) {
+    .dropdown {
+      width: 20em;
+    }
+  }
 </style>

@@ -1,44 +1,44 @@
 <template>
-    <div class="item">
-        <div class="left">
-          <div class="date">
-            Создан: <br>
-            {{ dateWork(data.created_at) }}
-            <br><br>
-            Обновлен: <br>
-            {{ dateWork(data.updated_at) }}
-          </div>
-          <button v-if="flag == 'saved'" class="delete" @click="deleteSavedRepo(data.id)">
-            Удалить
-          </button>
-          <button v-else class="add" @click="addRepo(data.owner.login, data.name)">
-            Сохранить
-          </button>
+  <div class="item">
+    <div class="left">
+      <div class="date">
+        Создан: <br>
+        {{ dateWork(data.created_at) }}
+        <br><br>
+        Обновлен: <br>
+        {{ dateWork(data.updated_at) }}
+      </div>
+      <button v-if="flag == 'saved'" class="delete" @click="deleteSavedRepo(data.id)">
+        Удалить
+      </button>
+      <button v-else class="add" @click="addRepo(data.owner.login, data.name)">
+        Сохранить
+      </button>
+    </div>
+    <div class="right">
+        <a class="title" :href="data.html_url" target="_blank">
+            {{ data.name }} 
+            <v-icon scale="0.8" name="bi-arrow-up-right"/>
+        </a>
+        <div class="description">
+            {{ data.description }}
         </div>
-        <div class="right">
-            <a class="title" :href="data.html_url" target="_blank">
-                {{ data.name }} 
-                <v-icon scale="0.8" name="bi-arrow-up-right"/>
-            </a>
-            <div class="description">
-                {{ data.description }}
+        <div class="stack">
+            <div class="skill">
+                {{ data.language === null ? 'Other' : data.language }}
             </div>
-            <div class="stack">
-                <div class="skill">
-                    {{ data.language === null ? 'Other' : data.language }}
-                </div>
-            </div>
-            <div class="bottom">
-                <a :href="data.linkGit">
-                    Ссылка на Git
-                </a>    
-                <span>
-                    {{ data.stargazers_count }}
-                    <v-icon name="bi-star-fill"/>
-                </span>
-            </div>
+        </div>
+        <div class="bottom">
+            <a :href="data.owner.html_url" target="_blank">
+                Ссылка на Git
+            </a>    
+            <span>
+                {{ data.stargazers_count }}
+                <v-icon name="bi-star-fill"/>
+            </span>
         </div>
     </div>
+  </div>
 </template>
 <script>
 import { dateWork, getDate } from '@/helpers/dateWork';
@@ -97,6 +97,14 @@ export default {
       & span {
         color: #58DBC7;
       }
+
+      a {
+        text-decoration: underline;
+
+        &:hover {
+          color: $second-color;
+        }
+      }
     }
 
     .title {
@@ -129,6 +137,34 @@ export default {
 
       &:nth-child(1) {
         margin-left: 0;
+      }
+    }
+  }
+
+  @media (max-width: 459px) {
+    .item {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid $text-color;
+      border-radius: 0;
+      margin-bottom: 10px;
+
+      .left {
+        order: 2;
+      }
+
+      .date {
+        display: none;
+      }
+
+      .right {
+        order: 1;
+      }
+
+      .bottom {
+        a {
+          color: $second-color;
+        }
       }
     }
   }

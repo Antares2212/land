@@ -26,6 +26,13 @@
   }
 }
 
+@media (max-width: 459px) {
+  .title h1 {
+    font-size: 24px;
+    padding: 0 15px;
+  }
+}
+
 // Buttons
 .add, .delete {
   display: flex;

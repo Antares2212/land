@@ -25,20 +25,17 @@ export default {
 <style scoped lang="scss">
 
 .search {
-  display: grid;
-  gap: 30px;
-  grid-template-columns: 1fr;
-
   .options {
-    display: grid;
+    display: flex;
+    align-items: center;
     gap: 30px;
-    grid-template-columns: 1fr 1fr;
   }
 
   .body {
     width: fit-content;
     height: fit-content;
     position: relative;
+    margin-bottom: 30px;
   }
 
   .input{
@@ -81,6 +78,24 @@ export default {
 
     &:hover {
       color: #58DBC7;
+    }
+  }
+
+  @media (max-width: 459px) {
+    .options {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .btn {
+      right: 30px;
     }
   }
 }

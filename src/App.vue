@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ResumePage from './pages/ResumePage.vue'
+import ResumePage from './pages/MainPage.vue'
 
 export default {
   name: 'App',

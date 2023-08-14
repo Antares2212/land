@@ -61,8 +61,7 @@ export default {
     };
   },
   watch: {
-    dataList(newVal, oldVal) {
-      console.log(newVal.length < this.param.per_page);
+    dataList(_, oldVal) {
       if (oldVal.length > this.param.per_page) {
         this.disabled = true
       }
