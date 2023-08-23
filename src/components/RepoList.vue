@@ -8,10 +8,10 @@
         Обновлен: <br>
         {{ dateWork(data.updated_at) }}
       </div>
-      <button v-if="flag == 'saved'" class="delete" @click="deleteSavedRepo(data.id)">
+      <button v-if="flag == 'saved'" class="delete" @click="deleteRepo(data.id)">
         Удалить
       </button>
-      <button v-else class="add" @click="addRepo(data.owner.login, data.name)">
+      <button v-else class="add" @click="addRepo(data)">
         Сохранить
       </button>
     </div>
@@ -42,14 +42,15 @@
 </template>
 <script>
 import { dateWork, getDate } from '@/helpers/dateWork';
-import { useGit } from '@/hooks/useGit';
-export default {
-    props: ['data', 'flag'],
-    setup: () => {
-      const { addRepo, deleteSavedRepo} = useGit()
 
-      return { getDate, dateWork, addRepo, deleteSavedRepo}
+export default {
+  props: ['data', 'flag', 'addRepo', 'deleteRepo'],
+  setup: () => {
+    return {
+      dateWork,
+      getDate
     }
+  }
 }
 </script>
 <style lang="scss">

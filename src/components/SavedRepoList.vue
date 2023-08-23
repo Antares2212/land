@@ -10,7 +10,7 @@
       <LoadingPage :isLoading="isLoading"/>
     </div>
     <div v-else-if="savedRepositories.items">
-      <RepoList v-for="item in savedRepositories.items" :key="item.id" :data="item" :flag="'saved'"/>
+      <RepoList v-for="item in savedRepositories.items" :deleteRepo="deleteSavedRepo" :key="item.id" :data="item" :flag="'saved'"/>
     </div>
     <div v-else>
       {{ savedRepositories.message }}
@@ -19,23 +19,23 @@
   </div>
 </template>
 <script>
-import { useGit } from '@/hooks/useGit';
-import { useSearchRepo } from '@/hooks/useSearchRepo';
 import PagginationBar from '@/app/PagginationBar.vue';
 import RepoList from '@/components/RepoList.vue';
 import LoadingPage from '@/app/LoadingPage.vue';
+import { useGit } from '@/hooks/useGit';
+import { useSearchRepo } from '@/hooks/useSearchRepo';
 import { useLoading } from '@/hooks/useLoading';
 
 export default {
   components: { RepoList, PagginationBar, LoadingPage },
   setup: () => {    
     const { isLoading, setLoading } = useLoading()
-    const { savedRepositories, getSaveRepo } = useGit(setLoading)
+    const { savedRepositories, getSaveRepo, deleteSavedRepo } = useGit(setLoading)
 
     const param = {
       per_page: 10,
       page: 1,
-    }
+    }    
     
     const { updatePage, handleSubmit } = useSearchRepo(param, getSaveRepo)
 
@@ -44,7 +44,8 @@ export default {
       handleSubmit,
       savedRepositories,
       param,
-      isLoading
+      isLoading,
+      deleteSavedRepo
     }
   }
 }

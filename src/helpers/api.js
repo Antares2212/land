@@ -8,7 +8,7 @@ const handleResponse = async (response) => {
   }
 }
 
-export const request = async (method, url, options = {}, data = {}, loading) => {
+export const request = async (method, url, options = {}, data = {}, loading = Function) => {
 
   method === ('GET' || 'DELETE') ? 
     options = {

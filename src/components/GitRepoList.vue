@@ -14,7 +14,7 @@
       <LoadingPage :isLoading="isLoading"/>
     </div>
     <div v-else-if="repositories.items">
-      <RepoList v-for="item in repositories.items" :key="item.id" :data="item" :flag="'repos'"/>
+      <RepoList v-for="item in repositories.items" :addRepo="addRepo" :key="item.id" :data="item" :flag="'repos'"/>
     </div>
     <div v-else>
       Данные отсутствуют
@@ -25,11 +25,11 @@
 <script>
 import DropDown from '../app/DropDown.vue'
 import SearchBar from '@/app/SearchBar.vue'
-import { useSearchRepo } from '@/hooks/useSearchRepo'
-import { useGit } from '@/hooks/useGit'
 import RepoList from './RepoList.vue'
 import PagginationBar from '@/app/PagginationBar.vue'
 import LoadingPage from '@/app/LoadingPage.vue';
+import { useSearchRepo } from '@/hooks/useSearchRepo'
+import { useGit } from '@/hooks/useGit'
 import { useLoading } from '@/hooks/useLoading'
 
 export default {
@@ -52,7 +52,7 @@ export default {
   },
   setup: () => {
     const { isLoading, setLoading } = useLoading()
-    const { repositories, searchRepo } = useGit(setLoading)
+    const { repositories, searchRepo, addRepo } = useGit(setLoading)
 
     const param = {
       q: 'pomodoro',
@@ -69,7 +69,8 @@ export default {
       handleSubmit,
       repositories,
       param,
-      isLoading
+      isLoading,
+      addRepo
     }
   }
 }

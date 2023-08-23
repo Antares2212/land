@@ -1,6 +1,8 @@
 <template>
   <div v-if="isLoadings" class="loading-container">
-    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="lds-roller">
+      <div v-for="n in 8" :key="n"></div>
+    </div>
   </div>
 </template>
 
